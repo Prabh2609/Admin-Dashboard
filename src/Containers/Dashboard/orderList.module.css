@@ -1,0 +1,21 @@
+td
+{
+    padding:12px;
+}
+@media (max-width:720px)
+{
+
+    table
+    {
+        width:100%;
+    }
+    td
+    {
+        font-size: 12px;
+        padding:8px;
+    }
+    tr
+    {
+        width:100%;
+    }
+}

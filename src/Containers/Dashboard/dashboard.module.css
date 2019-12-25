@@ -1,0 +1,137 @@
+.dashContainer
+{
+    margin-right: auto;
+    margin-left: auto;
+    margin-bottom: 0;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width:80%;
+    box-sizing: border-box;
+}
+/* ---------------------------------------- */
+.dashHeading
+{
+    margin:0 200px;
+}
+.dashTitle
+{
+    color:#fff;
+    padding:50px 0px;
+    margin:0;
+    font-size: 16px;
+    text-align: left!important;
+}
+/* --------------------------------------------- */
+.dashContent
+{
+    
+    width:100%;
+    margin-bottom: 40px;
+    display: flex;
+    flex-direction: row;
+}
+.content
+{
+    width:100%;
+    height:max-content;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.contentBlock
+{
+    width:47%;
+    background-color:#435c70;
+    box-shadow: 1px 1px 5px 0 #455c71;
+    box-sizing: border-box;
+    height:max-content;
+    padding:18px;
+    margin-bottom:32px;
+}
+.title
+{
+    color:#fff;
+    font-size: 18px;
+}
+.orderContent
+{
+    width: 100%;
+    background-color:#435c70;
+    box-shadow: 1px 1px 5px 0 #455c71;
+    box-sizing: border-box;
+    height:480px;
+    overflow-y: scroll;
+    padding:18px;
+    margin-bottom:32px;
+}
+/* .orderList
+{
+    margin:17px;
+    background-color:#435c70;
+    box-shadow: 1px 1px 5px 0 #455c71;
+    height:450px;
+}
+.Ordertitle
+{
+    color: #fff;
+    padding:10px 40px;
+}
+.notificationContiner
+{
+    height:310px;
+    overflow-y: scroll;
+}
+.notificationContiner tr
+{
+    background-color:#4e657a;
+    margin:15px;
+    margin-bottom:100px;
+}
+.notificationContiner img
+{
+    margin-left:20px;
+    margin-top: 20px;
+}
+.text
+{
+    width:50%;
+    background-color: turquoise;
+}
+.time
+{
+    font-size: 14px;
+    color: rgb(189,203,216);
+    padding:15px;
+    margin-left:20px;
+}
+.noti
+{
+    background-color: red;
+}
+.storageAndNotiBoxes
+{
+    display:flex;
+} */
+@media (max-width:720px)
+{
+    .dashHeading
+    {
+        text-align:left;
+        padding-left:0;
+        margin:0px;
+    }
+    .content
+    {
+        flex-direction: column;
+    }
+    .contentBlock
+    {
+        width:100%;
+    }
+    .dashContainer
+    {
+        width:90%;
+    }
+}

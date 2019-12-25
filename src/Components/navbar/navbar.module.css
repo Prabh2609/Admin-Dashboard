@@ -1,0 +1,153 @@
+.navbar
+{
+    height:14vh;
+    box-sizing: border-box;
+    background-color: #567086;
+    width:100%;
+    display: flex;
+ }
+ .navbarHeading
+ {
+    color: white;
+    align-items: center;
+    height: 100%;
+    padding-top:5px;
+    padding-bottom: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    box-sizing: border-box;
+    text-decoration: none;
+    padding-left:60px;
+    font-weight: 700;
+    width:30%;
+ }
+ ul
+{
+    
+    margin-top: 0;
+    list-style: none;
+    box-sizing: border-box;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    width:60%;
+    margin-left:auto;
+    margin-right:auto;
+}
+.navLink
+{
+    padding-right: 0;
+    padding-left: 0;
+    height: 100%;
+    align-items: center;
+    padding-top: 22px;
+    font-size: 90%;
+    cursor: pointer;
+    box-sizing: border-box;
+}
+a
+{
+    margin:0 20px;
+}
+i
+{
+    color: white;
+    font-size: 22px;
+}
+.navLink:hover i
+{
+    color: #f5a623;
+}
+.navLink:hover p
+{
+    color: #f5a623;
+}
+.loginStatusContainer
+{
+    margin-left:250px;
+    box-sizing:border-box
+}
+.toggleContainer
+{
+    margin-top: auto;
+    margin-bottom:auto;
+    border-color: #708da8;
+    width:4%;
+    box-shadow: rgba(255, 255, 255, 0.1) 0 1px 1px 2px;
+    padding-top:18px;
+    box-sizing: border-box;
+    text-align: center;
+    height: 60%;
+    margin-left:auto;
+    margin-right:auto;
+    display: none;
+}
+ul a.active
+{
+    background-color:#f5a623;
+    text-decoration: none;
+    padding-left:0px;
+    color: white!important;
+}
+ul a.active:hover p
+{
+    color: white!important;
+}
+ul a.active:hover i
+{
+    color: white!important;
+}
+@media (max-width:574px)
+{
+    body
+    {
+        margin:0;
+        padding:0
+    }
+    .navbarHeading
+    {
+        font-size: 16px;
+        width:fit-content;
+        padding-left:16px;
+    }
+    ul
+    {
+        flex-direction: column;
+        height:max-content;
+        box-sizing: border-box;
+        text-align:left;
+        width:fit-content;
+        padding:0;
+        display: none;
+        position: absolute;
+        top:74px;
+        right:27px;
+        z-index:1000;
+        background-color: #435c70;
+        border-color: #708da8;
+        box-shadow: rgba(255, 255, 255, 0.1) 0 1px 1px 2px;
+    }
+    i
+    {
+        font-size: 18px;
+    }
+    .navLink
+    {
+        display: flex;
+        flex-direction: row;
+        width:fit-content;
+    }
+    .toggleContainer
+    {
+        display: block;
+        width: 12%;
+        margin-right: 25px;
+        cursor: pointer;
+    }
+    .loginStatusContainer
+    {
+        margin:0
+    }
+}
+ 
