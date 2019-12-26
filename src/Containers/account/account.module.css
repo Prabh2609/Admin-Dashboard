@@ -56,8 +56,6 @@ option
     height:fit-content;
     box-sizing: border-box;
     padding:40px;
-    /* min-height:450px;
-    min-width:425px; */
     margin-top: 35px;
     margin-bottom: 50px;
 }
@@ -76,7 +74,7 @@ option
     border-radius: 50%;
     position: absolute;
     top:80%;
-    left:20%;
+    left:18%;
     transition-duration:2s;
     display: none;
 }
@@ -187,6 +185,11 @@ option
         flex-direction: column;
         box-sizing:border-box;
     }
+    .avatar i
+    {
+        left:40%;
+        top:85%;
+    }
     .listContiner
     {
         padding:24px;
@@ -202,7 +205,7 @@ option
     }  
     .avatar
     {
-        width:70%;
+        width:100%;
     }
     .accountCredentialsContainer
     {

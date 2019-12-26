@@ -25,7 +25,7 @@ class Account extends Component{
                             name:'',
                             email:'',
                             password:'',
-                            phone:''
+                            phone:''                            
                             })
                         break;
             case 'Merchant':delete object.accountsPage.Admin
@@ -62,6 +62,8 @@ class Account extends Component{
                     break;
         }
         localStorage.setItem("Response",JSON.stringify(object))
+        this.setState({pageData:JSON.parse(localStorage.getItem("Response")).accountsPage})
+        document.location.reload()
     }
     updateAccount=()=>{
         let account=this.state.accountType
@@ -92,6 +94,7 @@ class Account extends Component{
                     break;
         }
         localStorage.setItem("Response",JSON.stringify(object))
+        this.setState({pageData:JSON.parse(localStorage.getItem("Response")).accountsPage})
     }
     onInputChange=(e,name)=>
     {
@@ -111,7 +114,7 @@ class Account extends Component{
     }
     onAccountSelection=(e)=>{
         let tempAccountType=e.target.value
-        let data=this.state.pageData
+        let data=JSON.parse(localStorage.getItem("Response")).accountsPage
         switch(tempAccountType)
         {
             case 'Admin':this.setState({
@@ -184,6 +187,7 @@ class Account extends Component{
             default:break;
         }
         localStorage.setItem("Response",JSON.stringify(tempObject))}
+        this.setState({pageData:JSON.parse(localStorage.getItem("Response")).accountsPage})
     }
     onImageUpload=(e)=>
     {
@@ -209,7 +213,8 @@ class Account extends Component{
                     default:alert("Cant change default image");
                                 break;
                 }
-                localStorage.setItem("Response",JSON.stringify(object ))
+                localStorage.setItem("Response",JSON.stringify(object))
+                this.setState({pageData:JSON.parse(localStorage.getItem("Response")).accountsPage})
             }
             reader.readAsDataURL(e.target.files[0])
         }
@@ -223,17 +228,20 @@ class Account extends Component{
                         <p>Accounts</p>
                         <select className={classes.dropdown} onChange={(e)=>{this.onAccountSelection(e)}}>
                             <option value="default">Select Account</option>
-                            <option value="Admin">Admin</option>
-                            <option value="Editor">Editor</option>
-                            <option value="Merchant">Merchant</option>
-                            <option value="Customer">Customer</option>
+                            {Object.keys(this.state.pageData).map((item,pos)=>{
+                                return(
+                                <option value={item} keys={pos} >{item}</option>
+                                )
+                            })}
                         </select>
                     </div>
                     <div className={classes.accountContainer}>
                         <div className={classes.avatar}>
                             <h2>Change Avatar</h2>
+                            <div className={classes.imageContainer}>
                                 <img src={this.state.avatar} alt="avatar"></img>
                                 <i className="far fa-trash-alt tm-product-delete-icon" onClick={this.deleteImage}></i>
+                            </div>
                                 <input type='file' name='pic' id='pic' accept='image/*' onChange={(e)=>this.onImageUpload(e)}/>
                                 <label for='pic'>Upload new photo</label>
                         </div>
@@ -268,55 +276,6 @@ class Account extends Component{
                         </div>
                     </div>
                 </div>
-                {/* <div className="acc-container">
-                    <div className="loa-con">
-                        <h2>List of Accounts</h2>
-                        <p>Accounts</p>
-                        <select className="dropdown" onChange={(e)=>{this.onAccountSelection(e)}}>
-                            <option value="0">Select Account</option>
-                            <option value="Admin">Admin</option>
-                            <option value="Editor">Editor</option>
-                            <option value="Merchant">Merchant</option>
-                            <option value="Customer">Customer</option>
-                        </select>
-                    </div>
-                    <div className="as-con">
-                        <div className="avatar-con">
-                            <h2>Change Avatar</h2>
-                            <img src={this.state.avatar} alt="avatar"/>
-                            <button className="upload-btn">UPLOAD NEW PHOTO</button>
-                        </div>
-                        <div className="set-con">
-                            <h2>Account Settings</h2>
-                            <form className="acc-form">
-                               <div className="formGroup">
-                                   <label for="accountname">Account Name</label>
-                                   <input name="accountname" type="text" className="form" id="accountname" value={this.state.name} required></input>
-                               </div>
-                               <div className="formGroup">
-                                   <label for="email">Account Email</label>
-                                   <input name="email" type="email" className="form" id="email" value={this.state.email} required></input>
-                               </div>
-                               <div className="formGroup">
-                                   <label for="password">Password</label>
-                                   <input name="password" type="password" className="form" id="password" defaultValue='' required></input>
-                               </div>
-                               <div className="formGroup">
-                                   <label for="password">Re-enter Password</label>
-                                   <input name="password" type="password" className="form" id="password" defaultValue='' required></input>
-                               </div>
-                               <div className="formGroup">
-                                   <label for="phone">Phone</label>
-                                   <input name="phone" type="number" className="form" id="phone" value={this.state.phone} required></input>
-                               </div>
-                               <button className="update-btn">UPDATE YOUR PROFILE</button>
-                               <div className="formGroup">
-                                   <button className="delete-btn">DELETE YOUR ACCOUNT</button>
-                               </div>
-                            </form>
-                        </div>
-                    </div>
-                </div> */}
             </div>
        )
     }
