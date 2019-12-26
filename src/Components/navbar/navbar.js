@@ -29,7 +29,7 @@ class Navbar extends Component{
     render(){
 
     return(
-        <nav className={classes.navbar}>{console.log(this.props)}
+        <nav className={classes.navbar}>
             <div className={classes.navbarHeading}>
                 <h1>PRODUCT ADMIN</h1>
             </div>

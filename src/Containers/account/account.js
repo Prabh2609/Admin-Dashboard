@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import classes from './account.module.css'
+import Popup from '../../Components/popup/popup';
+import { connect } from 'react-redux';
 
 class Account extends Component{
     defaultImage="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQWuyotodhebYMRdtMG7M3SkXv_qq4DRFP4UVyNTI2qTalDn8U6&s"
@@ -10,7 +12,7 @@ class Account extends Component{
         name:'',
         email:'',
         password:'',
-        phone:''
+        phone:'',
     }
     deleteAccount=()=>
     {
@@ -74,21 +76,25 @@ class Account extends Component{
                         object.accountsPage.Admin.email=this.state.email
                         object.accountsPage.Admin.password=this.state.password
                         object.accountsPage.Admin.phone=this.state.phone
+                        this.props.show()
                 break;
             case 'Merchant':object.accountsPage.Merchant.name=this.state.name
                             object.accountsPage.Merchant.email=this.state.email
                             object.accountsPage.Merchant.password=this.state.password
                             object.accountsPage.Merchant.phone=this.state.phone
+                            this.props.show()
                 break;
             case 'Editor':object.accountsPage.Editor.name=this.state.name
                         object.accountsPage.Editor.email=this.state.email
                         object.accountsPage.Editor.password=this.state.password
                         object.accountsPage.Editor.phone=this.state.phone
+                        this.props.show()
                 break;
             case 'Customer':object.accountsPage.Customer.name=this.state.name
                             object.accountsPage.Customer.email=this.state.email
                             object.accountsPage.Customer.password=this.state.password
                             object.accountsPage.Customer.phone=this.state.phone
+                            this.props.show()
                 break;
             default:alert("Cant Change values of default account")
                     break;
@@ -222,6 +228,7 @@ class Account extends Component{
     render(){
         return(
             <div className={classes.accountPage}>
+                {this.props.Popup?<Popup message="UPDATED"/>:null}
                 <div className={classes.accountPageContainer}>
                     <div className={classes.listContiner}>
                         <h2>List of Accounts</h2>
@@ -280,5 +287,18 @@ class Account extends Component{
        )
     }
 }
-    
-export default Account;
+
+const mapGlobalStateToProps=(globalState)=>
+{
+    return{
+        Popup:globalState.showPopup
+    }
+}
+
+const mapDispatchToProps=(dispatch)=>{
+    return{
+        show:()=>{dispatch({type:'SHOW_POPUP'})}
+    }
+}
+
+export default connect(mapGlobalStateToProps,mapDispatchToProps)(Account);

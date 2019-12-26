@@ -2,12 +2,12 @@ import React, { Component } from 'react';
 import classes from './product.module.css';
 import { Link } from 'react-router-dom';
 import { RouteEndPoints } from '../../Utils/RouteEndPoints';
-import Addproduct from '../addproduct/addproduct';
-
+import { connect } from 'react-redux';
+import ProductCategory from '../../Components/productCategory/productCategory';
 
 
 class Product extends Component{
-    
+
     state={
         products:JSON.parse(localStorage.getItem("Response")).productsPage.products,
         categories:JSON.parse(localStorage.getItem("Response")).productsPage.categories,
@@ -15,25 +15,25 @@ class Product extends Component{
     }
 
     Checked=(e)=>{
+        alert(e.target.value)
         let id=e.target.id
+        this.setState(prevState=>({
+            array:[...prevState.array,id]
+        }))       
     }
-    onDeleteClick=(e)=>{
+    onDeleteSelecetedClick=()=>
+    {
+        this.state.array.map(id=>console.log(id))
+    }
+    deleteRowWithId=(id)=>{
         let array=this.state.products
         let tempObject=JSON.parse(localStorage.getItem("Response"))
-        array.splice(e.target.id,1)
+        array.splice(id,1)
         tempObject.productsPage.products=array
         localStorage.setItem("Response",JSON.stringify(tempObject))
         this.setState({products:array})
     }    
-    onDeleteCategoryClick=(e)=>
-    {
-        let array=this.state.categories
-        let tempObject=JSON.parse(localStorage.getItem("Response"))
-        array.splice(e.target.id,1)
-        tempObject.productsPage.categories=array
-        localStorage.setItem("Response",JSON.stringify(tempObject))
-        this.setState({categories:array})
-    }
+
     render(){
         return(
             <div className={classes.productPage}>
@@ -57,7 +57,7 @@ class Product extends Component{
                                             return(
                                                 <tr key={pos}>
                                                     <th scope="row">
-                                                        <input id={pos} className={classes.checkbox} type="checkbox" onChange={(e)=>{this.Checked(e)}}></input>
+                                                        <input id={pos} className={classes.checkbox} type="checkbox" checked onChange={(e)=>{this.Checked(e)}}></input>
                                                     </th>
                                                     <td>
                                                         {products.name}
@@ -72,7 +72,7 @@ class Product extends Component{
                                                         {products.expireDate}
                                                     </td>
                                                     <td>
-                                                        <i id={pos}  className="far fa-trash-alt tm-product-delete-icon" onClick={(e)=>{this.onDeleteClick(e)}}></i>    
+                                                        <i id={pos}  className="far fa-trash-alt tm-product-delete-icon" onClick={(e)=>{this.deleteRowWithId(e.target.id)}}></i>    
                                                     </td>
                                                 </tr>                                            
                                             )
@@ -84,43 +84,16 @@ class Product extends Component{
                         <div className={classes.buttonContainer}>
                             <Link to={RouteEndPoints.AddNewProduct}>
                             <button>add new product</button>
-                            </Link>
-                            
-                            <button>delete selected product</button>
+                            </Link>                            
+                            <button onClick={()=>this.onDeleteSelecetedClick()}>delete selected product</button>
                         </div>
                     </div>
-                    <div className={classes.productCategoryContainer}>
-                        <div className={classes.productCategoryContent}>
-                            <h2>Product categories</h2>
-                            <div className={classes.productCategoryTableContainer}>
-                                <table>
-                                    <tbody>
-                                    {
-                                        JSON.parse(localStorage.getItem("Response")).productsPage.categories.map((category,pos)=>{
-                                            return(
-                                                <tr key={pos} style={{textAlign:"left"}}>
-                                                    <td style={{paddingLeft:"12px"}}>
-                                                        {category}
-                                                    </td>
-                                                    <td>
-                                                        <i  className="far fa-trash-alt tm-product-delete-icon" onClick={(e)=>{this.onDeleteCategoryClick(e)}}></i>
-                                                    </td> 
-                                                </tr>
-                                            )
-                                        })
-                                    }
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div className={classes.categoryButtonContainer}>
-                                <button>add new category</button>
-                            </div>
-                        </div>
-                    </div>
+                    {/*category  */}<ProductCategory/>
                 </div>
             </div>
         )
     }
 }
+
 
 export default Product;

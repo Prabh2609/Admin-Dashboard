@@ -14,7 +14,7 @@
 }
 .productContent
 {
-    width:50%;
+    width:55%;
     box-sizing: border-box;
     background-color: #435c70;
     box-shadow:  1px 5px 0 #455c71;
@@ -23,8 +23,9 @@
 }
 .productTableContainer
 {
-    height: 445px;
-    width:98%;
+    height:max-content;
+    max-height: 445px;
+    width:90%;
     margin:40px;
     margin-left:auto;
     margin-right:auto;
@@ -38,7 +39,11 @@
     margin-top: 40px;
     margin-left:auto;
     margin-right:auto;
-    margin-bottom: 80px;
+    margin-bottom: 30px;
+}
+button
+{
+    margin:0;
 }
 table input
 {
@@ -59,40 +64,6 @@ table tbody i
 table tbody i:hover
 {
     color:#a0c0de;
-}
-.productCategoryContainer
-{
-    width:40%;
-    background-color: #435c70;
-    box-shadow:  1px 5px 0 #455c71;
-    margin-bottom: 30px;
-}
-.productCategoryContent
-{
-    height: max-content;
-}
-.productCategoryContent h2
-{
-    font-size: 20px;
-    font-weight: 700;
-    color: #fff;
-    margin-bottom: 30px; 
-    padding-top:20px;
-    padding-left:40px;
-}
-.productCategoryTableContainer
-{
-    height: 465px;
-    margin-bottom: 15px;
-    overflow-y: scroll;
-    margin-left:40px;
-    margin-right:40px;
-}
-.categoryButtonContainer
-{
-    width:80%;
-    margin-left:auto;
-    margin-right:auto;
 }
 .checkbox{
     background: #394e64!important;
@@ -138,19 +109,5 @@ table tbody i:hover
         width:98%;
         margin-left: auto;
         margin-right:auto;
-    }
-    .productCategoryContainer
-    {
-        width: 100%;
-    }
-    .productCategoryTableContainer
-    {
-        width:98%;
-        margin-left:auto;
-        margin-right:auto;
-    }
-    .productCategoryTableContainer td
-    {
-        font-size: 100%;
     }
 }

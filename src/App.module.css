@@ -71,6 +71,7 @@ tr
     text-align: center;
     background-color: #4e657a;
     margin: 15px;
+    max-height:40px;
 }
 tr:hover
 {
