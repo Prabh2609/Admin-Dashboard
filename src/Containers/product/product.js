@@ -53,11 +53,11 @@ class Product extends Component{
                                 </thead>
                                 <tbody>
                                     {
-                                        this.state.products.map((products,pos)=>{
+                                        JSON.parse(localStorage.getItem("Response")).productsPage.products.map((products,pos)=>{
                                             return(
                                                 <tr key={pos}>
                                                     <th scope="row">
-                                                        <input id={pos} className={classes.checkbox} type="checkbox" checked onChange={(e)=>{this.Checked(e)}}></input>
+                                                        <input id={pos} className={classes.checkbox} type="checkbox"  onChange={(e)=>{this.Checked(e)}}></input>
                                                     </th>
                                                     <td>
                                                         {products.name}

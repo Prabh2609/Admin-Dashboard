@@ -57,9 +57,7 @@ class Navbar extends Component{
             </NavLink>
                 <li className={classes.navLink}>
                     <div className={classes.loginStatusContainer}>
-                        <p onClick={()=>{this.onLogoutClicked()}}>Admin,
-                            <b>{this.props.userLoggedInStatus?<b>Logout</b>:<b>Login</b>}</b>
-                        </p>
+                       {this.props.userLoggedInStatus?<p onClick={()=>{this.onLogoutClicked()}}>Admin,<b>Logout</b></p>:null}
                     </div>
                 </li>
             </ul>
