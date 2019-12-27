@@ -1,3 +1,12 @@
+// FOR FUTURE REFERENCE :
+//                        HOW DELETE MULTIPLE WORKS?
+//                        FIRST ADD ONE VALUE SAY SELECTED IN OBJECT CONTAINING PRODUCT LIST DATA
+//                        AND INITIAL VALUE SHOULD BE FALSE 
+//                        WHEN USER CLICKS ON CHECKBOX SELECTED VALUE SHOULD TOGGLE
+//                        WHEN USER CLICKS ON DELETE MULTIPLE FILES FILTER THE LIST AND PRODUCE NEW LIST
+//                        WITH ONLY THOSE VALUES THAT HAVE SELECTED FALSE.AND NOW UPDATE STATE AND LOCAL STORAGE
+//                                                                                          ....SOURCE:stackoverflow
+
 import React, { Component } from 'react';
 import classes from './product.module.css';
 import { Link } from 'react-router-dom';
@@ -8,22 +17,39 @@ import ProductCategory from '../../Components/productCategory/productCategory';
 
 class Product extends Component{
 
-    state={
-        products:JSON.parse(localStorage.getItem("Response")).productsPage.products,
-        categories:JSON.parse(localStorage.getItem("Response")).productsPage.categories,
-        array:[]
+    constructor(props)
+    {
+        super(props)
+        let array=JSON.parse(localStorage.getItem("Response")).productsPage.products
+        array.map(item=>{
+            item.selected=false
+            })
+        this.state={
+            products:array
+        }
     }
 
     Checked=(e)=>{
-        alert(e.target.value)
         let id=e.target.id
         this.setState(prevState=>({
-            array:[...prevState.array,id]
-        }))       
+            products:prevState.products.map(item=>
+                    item.id===id?{...item,selected:!item.selected}:item
+                )
+            
+        }))
+        console.log(this.state.products[id].selected=!this.state.products[id].selected)
+        
     }
     onDeleteSelecetedClick=()=>
     {
-        this.state.array.map(id=>console.log(id))
+        let array=this.state.products.filter(list=>!list.selected)
+        let tempObject=JSON.parse(localStorage.getItem("Response"))
+        tempObject.productsPage.products=array
+        localStorage.setItem("Response",JSON.stringify(tempObject))
+        this.setState({
+            products:array})
+        window.location.reload()
+        
     }
     deleteRowWithId=(id)=>{
         let array=this.state.products
@@ -33,7 +59,6 @@ class Product extends Component{
         localStorage.setItem("Response",JSON.stringify(tempObject))
         this.setState({products:array})
     }    
-
     render(){
         return(
             <div className={classes.productPage}>
@@ -53,7 +78,7 @@ class Product extends Component{
                                 </thead>
                                 <tbody>
                                     {
-                                        JSON.parse(localStorage.getItem("Response")).productsPage.products.map((products,pos)=>{
+                                        this.state.products.map((products,pos)=>{
                                             return(
                                                 <tr key={pos}>
                                                     <th scope="row">
