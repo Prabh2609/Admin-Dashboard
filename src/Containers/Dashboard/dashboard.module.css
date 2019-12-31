@@ -66,54 +66,6 @@
     padding:18px;
     margin-bottom:32px;
 }
-/* .orderList
-{
-    margin:17px;
-    background-color:#435c70;
-    box-shadow: 1px 1px 5px 0 #455c71;
-    height:450px;
-}
-.Ordertitle
-{
-    color: #fff;
-    padding:10px 40px;
-}
-.notificationContiner
-{
-    height:310px;
-    overflow-y: scroll;
-}
-.notificationContiner tr
-{
-    background-color:#4e657a;
-    margin:15px;
-    margin-bottom:100px;
-}
-.notificationContiner img
-{
-    margin-left:20px;
-    margin-top: 20px;
-}
-.text
-{
-    width:50%;
-    background-color: turquoise;
-}
-.time
-{
-    font-size: 14px;
-    color: rgb(189,203,216);
-    padding:15px;
-    margin-left:20px;
-}
-.noti
-{
-    background-color: red;
-}
-.storageAndNotiBoxes
-{
-    display:flex;
-} */
 @media (max-width:720px)
 {
     .dashHeading

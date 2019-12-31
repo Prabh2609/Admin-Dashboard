@@ -7,49 +7,48 @@ import {withRouter} from 'react-router'
 
 class Navbar extends Component{
 
-    onToggleClick=()=>
-    {
-        let navList=document.getElementById("nav")
-        if(navList.style.display=="none")
-        {
-            navList.style.display="block"
-        }
-        else
-        {
-            navList.style.display="none"
-        }
-    }
-
+    state={showMenu:true}
     onLogoutClicked()
     {
         this.props.onUserLogOut();
         this.props.history.push("/")
     }
 
+    componentDidMount(){
+        if(window.innerWidth<=720)
+        {
+            this.setState({showMenu:false})
+        }
+    }
+    onToggleClick=()=>{
+        this.setState(prevState=>({
+            showMenu:!prevState.showMenu
+        }))
+    }
     render(){
 
     return(
-        <nav className={classes.navbar}>
+        <nav className={classes.navbar}>{console.log(this.props)}
             <div className={classes.navbarHeading}>
                 <h1>PRODUCT ADMIN</h1>
             </div>
             <div className={classes.toggleContainer}>
-                <i className="fas fa-bars tm-nav-icon" onClick={()=>{this.onToggleClick()}}></i>
+                <i className="fas fa-bars tm-nav-icon" onClick={()=>this.onToggleClick()}></i>
             </div>
-            <ul className={classes.navList} id="nav">
-            <NavLink to = {RouteEndPoints.Dashboard} activeClassName={classes.active}>
+            {this.state.showMenu?<ul className={classes.navList} id="nav">
+            <NavLink to = {RouteEndPoints.Dashboard} onClick={(event)=>!this.props.userLoggedInStatus?event.preventDefault():null} activeClassName={classes.active}>
                 <li className={classes.navLink}>
                         <i className="fas fa-tachometer-alt"></i>
                         <p>Dashboard</p>
                 </li>
             </NavLink>
-            <NavLink to= {RouteEndPoints.Product} activeClassName={classes.active}>
+            <NavLink to= {RouteEndPoints.Product} onClick={(event)=>!this.props.userLoggedInStatus?event.preventDefault():null} activeClassName={classes.active}>
                 <li className={classes.navLink}>
                         <i className="fas fa-shopping-cart"></i>
                         <p>Products</p>
                 </li>
             </NavLink>
-            <NavLink to= {RouteEndPoints.Accounts} activeClassName={classes.active}>
+            <NavLink to= {RouteEndPoints.Accounts} onClick={(event)=>!this.props.userLoggedInStatus?event.preventDefault():null} activeClassName={classes.active}>
                 <li className={classes.navLink}>
                         <i className="fas fa-user"></i>
                         <p>Accounts</p>
@@ -60,19 +59,21 @@ class Navbar extends Component{
                        {this.props.userLoggedInStatus?<p onClick={()=>{this.onLogoutClicked()}}>Admin,<b>Logout</b></p>:null}
                     </div>
                 </li>
-            </ul>
+            </ul>:null}
         </nav>
     )}
 }
 
 const mapGlobalStateToProps=(globalState)=>{
     return{
-        userLoggedInStatus:globalState.loggedInStatus
+        userLoggedInStatus:globalState.loginReducer.loggedInStatus
     }
 }
+
 const mapDispatchToProps=(dispatch)=>{
     return{
-        onUserLogOut:()=>{dispatch({type:'USER_LOGOUT'})}
+        onUserLogOut:()=>{dispatch({type:"USER_LOGOUT"})}
     }
 }
+
 export default withRouter(connect(mapGlobalStateToProps,mapDispatchToProps)(Navbar));

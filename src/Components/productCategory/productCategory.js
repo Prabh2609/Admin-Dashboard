@@ -9,13 +9,14 @@ class productCategory extends Component{
     }
     onDeleteCategoryClick=(e)=>
     {
-        let array=this.state.categories
+        let array=JSON.parse(localStorage.getItem("Response")).productsPage.categories
         let tempObject=JSON.parse(localStorage.getItem("Response"))
         array.splice(e.target.id,1)
         tempObject.productsPage.categories=array
-        localStorage.setItem("Response",JSON.stringify(tempObject))
         this.setState({categories:array})
+        localStorage.setItem("Response",JSON.stringify(tempObject))
     }
+
     render(){
         return(
             <div className={classes.productCategoryContainer}>
@@ -29,10 +30,10 @@ class productCategory extends Component{
                                    JSON.parse(localStorage.getItem("Response")).productsPage.categories.map((category,pos)=>
                                    {
                                        return(<tr key={pos}>
-                                           <td>
+                                           <td className={classes.categoryCell}>
                                                {category}
                                            </td>
-                                           <td style={{textAlign:"right"}}>
+                                           <td className={classes.deleteIconCell}>
                                                 <i id={pos}  className="far fa-trash-alt tm-product-delete-icon" onClick={(e)=>{this.onDeleteCategoryClick(e)}}></i>
                                            </td>
                                        </tr>)
@@ -52,7 +53,7 @@ class productCategory extends Component{
 const mapGlobalStateToProps=(globalState)=>
 {
     return{
-        Popup:globalState.showPopup
+        Popup:globalState.popupReducer.showPopUp
     }
 }
 

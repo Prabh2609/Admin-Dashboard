@@ -4,7 +4,7 @@
     background-color: #435c70;
     width: 30%;
     padding-right: 70px;
-    padding-left: 70px;
+    padding-left: 30px;
     margin: auto;
     padding-top:60px;
     padding-bottom:60px;
@@ -26,6 +26,29 @@
 {
     margin-bottom: 15px;
     box-sizing: border-box;
+}
+.usernameValid
+{
+    position:relative;
+    width:330px;
+    padding:10px;
+    background-color: #fff;
+    border-radius:10px;
+    margin-top:10px;
+}
+.passwordValid
+{
+    position:relative;
+    width:330px;
+    padding:10px;
+    background-color: #fff;
+    border-radius:10px;
+    margin-top:10px;
+}
+.formGroup i
+{
+    color:#ffd700;
+    margin-right:10px;
 }
 .formLabel
 {

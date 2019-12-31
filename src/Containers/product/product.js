@@ -5,13 +5,11 @@
 //                        WHEN USER CLICKS ON CHECKBOX SELECTED VALUE SHOULD TOGGLE
 //                        WHEN USER CLICKS ON DELETE MULTIPLE FILES FILTER THE LIST AND PRODUCE NEW LIST
 //                        WITH ONLY THOSE VALUES THAT HAVE SELECTED FALSE.AND NOW UPDATE STATE AND LOCAL STORAGE
-//                                                                                          ....SOURCE:stackoverflow
 
 import React, { Component } from 'react';
 import classes from './product.module.css';
 import { Link } from 'react-router-dom';
 import { RouteEndPoints } from '../../Utils/RouteEndPoints';
-import { connect } from 'react-redux';
 import ProductCategory from '../../Components/productCategory/productCategory';
 
 
@@ -28,8 +26,8 @@ class Product extends Component{
             products:array
         }
     }
-
     Checked=(e)=>{
+        console.log(e.target.value)
         let id=e.target.id
         this.setState(prevState=>({
             products:prevState.products.map(item=>
@@ -46,9 +44,10 @@ class Product extends Component{
         let tempObject=JSON.parse(localStorage.getItem("Response"))
         tempObject.productsPage.products=array
         localStorage.setItem("Response",JSON.stringify(tempObject))
+        array.map(list=>list.selected=false)
         this.setState({
             products:array})
-        window.location.reload()
+
         
     }
     deleteRowWithId=(id)=>{
@@ -80,9 +79,9 @@ class Product extends Component{
                                     {
                                         this.state.products.map((products,pos)=>{
                                             return(
-                                                <tr key={pos}>
+                                                <tr key={pos}>{console.log(products)}
                                                     <th scope="row">
-                                                        <input id={pos} className={classes.checkbox} type="checkbox"  onChange={(e)=>{this.Checked(e)}}></input>
+                                                        <input id={pos} className={classes.checkbox} type="checkbox" checked={products.selected}  onChange={(e)=>{this.Checked(e)}}></input>
                                                     </th>
                                                     <td>
                                                         {products.name}

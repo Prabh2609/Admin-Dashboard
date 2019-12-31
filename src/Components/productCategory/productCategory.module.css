@@ -30,10 +30,15 @@
     width:80%;
     box-sizing: border-box;
 }
-tr
+.categoryCell
 {
-    text-align:left;
-    padding-right: 0px;
+    text-align:left!important;
+    /* !important to override inherited value --- inherited value is center*/
+    padding-right: 0px!important;
+}
+.deleteIconCell
+{
+    text-align:right!important;
 }
 .categoryButtonContainer
 {

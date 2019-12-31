@@ -2,10 +2,13 @@
 {
     background-color:#4e657a;
     box-shadow: 1px 1px 5px 0 #455c71;
-    padding:12px;
+    padding-left:12px;
     margin-bottom:18px;
     display: flex;
     flex-direction: row;
+    width:90%;
+    margin-left:auto;
+    margin-right: auto;
 }
 .imageContainer
 {

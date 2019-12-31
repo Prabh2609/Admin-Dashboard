@@ -3,8 +3,8 @@ import LatestHits from '../../Components/graphs/latestHits'
 import Perfomance from '../../Components/graphs/performance'
 import Storage from '../../Components/graphs/storage'
 import classes from './dashboard.module.css';
-import Notification from './notification';
-import OrderList from './orderList';
+import Notification from '../../Components/notifications/notification';
+import OrderList from '../../Components/orderList/orderList';
 
 
 const Dashboard=()=>{
@@ -37,7 +37,7 @@ const Dashboard=()=>{
                     {/* BLOCK FOR STORAGE ENDS HERE */}
                     {/* BLOCK FOR NOTIFICATIONS */}
                     <div className={classes.contentBlock}>
-                        <h2 className={classes.title}>Notification List</h2>
+                        <h2 className={classes.title} style={{paddingLeft:"24px"}}>Notification List</h2>
                         <Notification/>
                     </div>
                     {/* BLOCK FOR NOTIFICATIONS ENDS HERE */}

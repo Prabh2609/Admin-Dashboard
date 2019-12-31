@@ -4,11 +4,17 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
-import {createStore} from 'redux';
-import MainReducer from './Reducers/MainReducer';
+import {createStore,combineReducers} from 'redux';
 import {Provider} from 'react-redux';
+import LoginReducer from './Reducers/logInReducer'
+import PopUpReducer from './Reducers/popupReducer'
 
-const globalStore=createStore(MainReducer);
+const rootReducer=combineReducers({
+    loginReducer:LoginReducer,
+    popupReducer:PopUpReducer
+})
+const globalStore=createStore(rootReducer);
+console.log(globalStore.getState())
 
 ReactDOM.render(<Provider store={globalStore}><App /></Provider>, document.getElementById('root'));
 

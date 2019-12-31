@@ -82,14 +82,13 @@ option
 {
     cursor: pointer;
     width:100%;
-    height: auto;
+    min-height: 240px;
     display: block;
 }
 .imageContainer
 {
     width:100%;
     height: max-content;
-
 }
 .imageContainer:hover i
 {

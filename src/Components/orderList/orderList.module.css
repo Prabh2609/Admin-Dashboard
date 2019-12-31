@@ -1,0 +1,47 @@
+td
+{
+    padding:12px;
+    text-align: center!important;
+}
+.status
+{
+    display: inline-block;
+    margin-right:5px;
+    vertical-align: middle;
+    width:5px;
+    height:5px;
+    border-radius: 50%;
+    margin-top:-3px;
+}
+.Moving
+{
+    background-color: #9be64d;
+    box-shadow: 0 0 8px #9be64d, inset 0 0 8px #9be64d;
+}
+.Pending
+{
+    background-color:#efc54b;
+    box-shadow: 0 0 8px #efc54b, inset 0 0 8px #efc54b;
+}
+.Cancelled
+{
+    background-color:#da534f;
+    box-shadow:0 0 8px #da534f, inset 0 0 8px #da534f;
+}
+@media (max-width:720px)
+{
+
+    table
+    {
+        width:100%;
+    }
+    td
+    {
+        font-size: 12px;
+        padding:8px;
+    }
+    tr
+    {
+        width:100%;
+    }
+}

@@ -65,7 +65,6 @@ class Account extends Component{
         }
         localStorage.setItem("Response",JSON.stringify(object))
         this.setState({pageData:JSON.parse(localStorage.getItem("Response")).accountsPage})
-        document.location.reload()
     }
     updateAccount=()=>{
         let account=this.state.accountType
@@ -233,7 +232,7 @@ class Account extends Component{
                     <div className={classes.listContiner}>
                         <h2>List of Accounts</h2>
                         <p>Accounts</p>
-                        <select className={classes.dropdown} onChange={(e)=>{this.onAccountSelection(e)}}>
+                        <select className={classes.dropdown} value={this.state.accountType} onChange={(e)=>{this.onAccountSelection(e)}}>
                             <option value="default">Select Account</option>
                             {Object.keys(this.state.pageData).map((item,pos)=>{
                                 return(
@@ -291,7 +290,7 @@ class Account extends Component{
 const mapGlobalStateToProps=(globalState)=>
 {
     return{
-        Popup:globalState.showPopup
+        Popup:globalState.popupReducer.showPopup
     }
 }
 

@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
 import classes from './popup.module.css'
 import { connect } from 'react-redux'
+import { withRouter } from 'react-router'
 
 class popup extends Component
 {
     state={
-        category:''
+        category:'',
     }
 
     categoryInput=(e)=>
@@ -17,7 +18,9 @@ class popup extends Component
     onAddCategory=(e)=>{
         e.preventDefault()
         let object=JSON.parse(localStorage.getItem("Response"))
+        console.log(object)
         object.productsPage.categories.push(this.state.category)
+        console.log(object)
         localStorage.setItem("Response",JSON.stringify(object))
         this.props.close()
     }
@@ -49,7 +52,7 @@ class popup extends Component
         <div className={classes.backdrop}></div>
         <div className={classes.content}>
             <div className={classes.iconContainer}>
-                <i class="fas fa-times" onClick={()=>this.props.close()}></i>
+                <i className="fas fa-times" onClick={()=>this.props.close()}></i>
             </div>
             {this.message()}
         </div>
@@ -63,4 +66,4 @@ const mapDispatchToProps=(dispatch)=>{
     }
 }
 
-export default connect(null,mapDispatchToProps)(popup)
+export default withRouter(connect(null,mapDispatchToProps)(popup))
